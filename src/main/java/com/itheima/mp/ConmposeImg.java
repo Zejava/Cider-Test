@@ -48,7 +48,6 @@ public class ConmposeImg {
             }else {
                 System.out.println("No similar image found.");
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,7 +58,7 @@ public class ConmposeImg {
      */
     public static void getImgFromJson() {
         try {
-            int j = 0;
+            int j = 0;//记录图片名的变量
             // 从URL获取JSON数据
             String jsonString = fetchJsonFromUrl(API_URL);
 
@@ -93,12 +92,13 @@ public class ConmposeImg {
      * @throws Exception
      */
     private static String fetchJsonFromUrl(String urlString) throws Exception {
+        //传入url相关信息拿到json对象
         String result = "";
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         int responseCode = conn.getResponseCode();
-
+        //使用StringBuilder存储响应结果
         if (responseCode == HttpURLConnection.HTTP_OK) { // 成功
             try (InputStream inputStream = conn.getInputStream();
                  BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
